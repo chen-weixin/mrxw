@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>内存芯片紧缺</title>
+  <link rel="stylesheet" href="../tesla-news.css" />
+</head>
+<body>
+<div data-composition-id="scene-n3" data-width="1080" data-height="1920">
+
+  <!-- 深空背景 -->
+  <div class="aurora-bg">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+    <div class="stars-container" id="stars"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="slide-container">
+    <!-- 顶部区域 -->
+    <div class="header" id="header">
+      <div class="live-badge"><div class="live-dot"></div><span>财经速递</span></div>
+      <div class="source">来源：供应链监测</div>
+    </div>
+
+    <!-- 主标题 -->
+    <div class="main-title" id="main-title">
+      <div class="page-title" id="page-title">内存芯片紧缺加剧</div>
+    </div>
+
+    <!-- 内容区 -->
+    <div class="content-area" id="content-area">
+
+      <div class="section-block" id="section1">
+        <div class="section-label">📋 事件概要</div>
+        <div class="section-content">AI数据中心推高内存成本，导致Switch 2涨价及消费电子供应链承压，芯片短缺持续发酵。</div>
+      </div>
+
+      <div class="section-block" id="section2">
+        <div class="section-label">💡 影响逻辑</div>
+        <div class="section-content">
+          <strong>直接影响：</strong>内存芯片价格暴涨，推高终端产品售价。<br>
+          <strong>传导路径：</strong>AI需求挤出非AI领域，导致消费电子成本剧增。<br>
+          <strong>深层逻辑：</strong>验证AI对存储芯片的强力拉动，带动设备升级需求。
+        </div>
+      </div>
+
+      <div class="section-block" id="section3">
+        <div class="section-label">🏢 行业与企业</div>
+        <div class="section-content">
+          <span class="up">🔺 存储芯片：</span>江波龙、兆易创新、北京君正<br>
+          <span class="up">🔺 半导体设备：</span>北方华创、中微公司<br>
+          <span class="down">⚠️ 消费电子供应链：</span>立讯精密、工业富联
+        </div>
+      </div>
+    </div>
+
+    <!-- 页码 -->
+    <div class="page-indicator" id="page-indicator">03 / 04</div>
+
+    <!-- 进度条 -->
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-text" id="progress-text">0%</div>
+
+    <!-- 装饰编号 -->
+    <div class="ghost-num" id="ghost-num">03</div>
+
+    <!-- 字幕区 -->
+    <div class="subtitle-area" id="subtitle-area"></div>
+  </div>
+
+</div>
+
+<script src="../js/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+var DURATION = 13.0;
+var tl = gsap.timeline({ paused: true });
+
+// 流畅口播
+var WORDS = [
+  { text: "AI算力快速扩张", start: 0.5, end: 1.3 },
+  { text: "导致内存芯片严重紧缺", start: 1.3, end: 2.3 },
+  { text: "甚至引发游戏主机涨价", start: 2.3, end: 3.3 },
+  { text: "这验证了AI对存储芯片", start: 3.3, end: 4.3 },
+  { text: "强力拉动作用", start: 4.3, end: 5.0 },
+  { text: "存储芯片企业将受益", start: 5.0, end: 6.0 },
+  { text: "兆易创新、江波龙", start: 6.0, end: 7.0 },
+  { text: "北方华创、中微公司", start: 7.0, end: 8.0 },
+  { text: "设备需求也将增加", start: 8.0, end: 8.8 },
+  { text: "但消费电子供应链", start: 8.8, end: 9.6 },
+  { text: "立讯精密、工业富联", start: 9.6, end: 10.8 },
+  { text: "成本压力加大", start: 10.8, end: 13.0 },
+];
+
+// 生成星星
+var starsContainer = document.getElementById('stars');
+for (var i = 0; i < 60; i++) {
+  var s = document.createElement('div');
+  s.className = 'star';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.animationDelay = Math.random() * 3 + 's';
+  s.style.width = (2 + Math.random() * 2) + 'px';
+  s.style.height = s.style.width;
+  starsContainer.appendChild(s);
+}
+
+// 生成粒子
+var particlesContainer = document.getElementById('particles');
+for (var i = 0; i < 15; i++) {
+  var p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.top = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 8 + 's';
+  particlesContainer.appendChild(p);
+}
+
+// 进度条
+tl.to('#progress-fill', { width: '100%', duration: DURATION, ease: 'none' }, 0);
+tl.to('#progress-text', { textContent: '100%', duration: DURATION, ease: 'none', snap: { textContent: 1 }, onUpdate: function() {
+  document.getElementById('progress-text').style.opacity = 1;
+}}, 0);
+
+// 背景光晕
+tl.fromTo('.glow-1', { opacity: 0, scale: 0.8 }, { opacity: 0.5, scale: 1, duration: 2 }, 0);
+tl.fromTo('.glow-2', { opacity: 0, scale: 0.8 }, { opacity: 0.4, scale: 1, duration: 2 }, 0.3);
+tl.fromTo('.star', { opacity: 0 }, { opacity: 0.8, stagger: { each: 0.03, from: 'random' }, duration: 1 }, 0.2);
+tl.fromTo('.particle', { opacity: 0, y: 80 }, { opacity: 0.7, y: 0, stagger: { each: 0.08, from: 'random' }, duration: 1.5 }, 0.4);
+
+// 顶部区域
+tl.fromTo('#header', { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.3);
+
+// 主标题 - 带模糊滑入
+tl.fromTo('#page-title', { opacity: 0, y: -40, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power3.out' }, 0.5);
+
+// 内容块依次入场
+tl.fromTo('#section1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.9);
+tl.fromTo('#section2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 1.3);
+tl.fromTo('#section3', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 1.7);
+
+// 装饰元素
+tl.fromTo('#ghost-num', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.8);
+tl.fromTo('#page-indicator', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.5);
+
+// 字幕
+var subtitleContainer = document.getElementById('subtitle-area');
+WORDS.forEach(function(w) {
+  var el = document.createElement('span');
+  el.className = 'subtitle-word';
+  el.textContent = w.text;
+  el.style.opacity = '0';
+  subtitleContainer.appendChild(el);
+  tl.to(el, { opacity: 1, duration: 0.12, ease: 'power2.out' }, w.start);
+  tl.to(el, { opacity: 0, duration: 0.15 }, w.end - 0.08);
+});
+
+window.__timelines['scene-n3'] = tl;
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能体规范发布</title>
+  <link rel="stylesheet" href="../tesla-news.css" />
+</head>
+<body>
+<div data-composition-id="scene-n1" data-width="1080" data-height="1920">
+
+  <!-- 深空背景 -->
+  <div class="aurora-bg">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+    <div class="stars-container" id="stars"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="slide-container">
+    <!-- 顶部区域 -->
+    <div class="header" id="header">
+      <div class="live-badge"><div class="live-dot"></div><span>财经速递</span></div>
+      <div class="source">来源：工信部等三部门</div>
+    </div>
+
+    <!-- 主标题 -->
+    <div class="main-title" id="main-title">
+      <div class="page-title" id="page-title">智能体规范发布</div>
+    </div>
+
+    <!-- 内容区 -->
+    <div class="content-area" id="content-area">
+
+      <div class="section-block" id="section1">
+        <div class="section-label">📋 事件概要</div>
+        <div class="section-content">三部门联合发文，旨在规范智能体应用并鼓励创新发展，推动AI从聊天工具转向实际生产力。</div>
+      </div>
+
+      <div class="section-block" id="section2">
+        <div class="section-label">💡 影响逻辑</div>
+        <div class="section-content">
+          <strong>直接影响：</strong>顶层设计出台，明确AI Agent发展方向。<br>
+          <strong>传导路径：</strong>推动AI从对话模型向自主执行任务转型。<br>
+          <strong>深层逻辑：</strong>加速AI在B端与C端实际业务场景的落地应用。
+        </div>
+      </div>
+
+      <div class="section-block" id="section3">
+        <div class="section-label">🏢 行业与企业</div>
+        <div class="section-content">
+          <span class="up">🔺 AI Agent/软件服务：</span>金山办公、金蝶公司、用友网络<br>
+          <span class="up">🔺 AI应用端：</span>科大讯飞、百度<br>
+          <span class="up">🔺 办公自动化：</span>同花顺、万兴科技
+        </div>
+      </div>
+    </div>
+
+    <!-- 页码 -->
+    <div class="page-indicator" id="page-indicator">01 / 04</div>
+
+    <!-- 进度条 -->
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-text" id="progress-text">0%</div>
+
+    <!-- 装饰编号 -->
+    <div class="ghost-num" id="ghost-num">01</div>
+
+    <!-- 字幕区 -->
+    <div class="subtitle-area" id="subtitle-area"></div>
+  </div>
+
+</div>
+
+<script src="../js/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+var DURATION = 14.0;
+var tl = gsap.timeline({ paused: true });
+
+// 流畅口播
+var WORDS = [
+  { text: "三部门联合印发", start: 0.5, end: 1.3 },
+  { text: "智能体发展意见", start: 1.3, end: 2.2 },
+  { text: "标志着AI正式从聊天", start: 2.2, end: 3.2 },
+  { text: "转向干活", start: 3.2, end: 3.8 },
+  { text: "这将直接利好AI Agent、", start: 3.8, end: 5.0 },
+  { text: "软件开发及办公自动化", start: 5.0, end: 6.2 },
+  { text: "等行业加速落地", start: 6.2, end: 7.0 },
+  { text: "顶层设计明确方向", start: 7.0, end: 8.0 },
+  { text: "从对话到执行", start: 8.0, end: 8.8 },
+  { text: "B端C端同时受益", start: 8.8, end: 9.6 },
+  { text: "金山办公、用友网络、", start: 9.6, end: 10.8 },
+  { text: "科大讯飞等", start: 10.8, end: 11.5 },
+  { text: "都将迎来发展机遇", start: 11.5, end: 14.0 },
+];
+
+// 生成星星
+var starsContainer = document.getElementById('stars');
+for (var i = 0; i < 60; i++) {
+  var s = document.createElement('div');
+  s.className = 'star';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.animationDelay = Math.random() * 3 + 's';
+  s.style.width = (2 + Math.random() * 2) + 'px';
+  s.style.height = s.style.width;
+  starsContainer.appendChild(s);
+}
+
+// 生成粒子
+var particlesContainer = document.getElementById('particles');
+for (var i = 0; i < 15; i++) {
+  var p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.top = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 8 + 's';
+  particlesContainer.appendChild(p);
+}
+
+// 进度条
+tl.to('#progress-fill', { width: '100%', duration: DURATION, ease: 'none' }, 0);
+tl.to('#progress-text', { textContent: '100%', duration: DURATION, ease: 'none', snap: { textContent: 1 }, onUpdate: function() {
+  document.getElementById('progress-text').style.opacity = 1;
+}}, 0);
+
+// 背景光晕
+tl.fromTo('.glow-1', { opacity: 0, scale: 0.8 }, { opacity: 0.5, scale: 1, duration: 2 }, 0);
+tl.fromTo('.glow-2', { opacity: 0, scale: 0.8 }, { opacity: 0.4, scale: 1, duration: 2 }, 0.3);
+tl.fromTo('.star', { opacity: 0 }, { opacity: 0.8, stagger: { each: 0.03, from: 'random' }, duration: 1 }, 0.2);
+tl.fromTo('.particle', { opacity: 0, y: 80 }, { opacity: 0.7, y: 0, stagger: { each: 0.08, from: 'random' }, duration: 1.5 }, 0.4);
+
+// 顶部区域
+tl.fromTo('#header', { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.3);
+
+// 主标题 - 带模糊滑入
+tl.fromTo('#page-title', { opacity: 0, y: -40, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power3.out' }, 0.5);
+
+// 内容块依次入场
+tl.fromTo('#section1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.9);
+tl.fromTo('#section2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 1.3);
+tl.fromTo('#section3', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 1.7);
+
+// 装饰元素
+tl.fromTo('#ghost-num', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.8);
+tl.fromTo('#page-indicator', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.5);
+
+// 字幕
+var subtitleContainer = document.getElementById('subtitle-area');
+WORDS.forEach(function(w) {
+  var el = document.createElement('span');
+  el.className = 'subtitle-word';
+  el.textContent = w.text;
+  el.style.opacity = '0';
+  subtitleContainer.appendChild(el);
+  tl.to(el, { opacity: 1, duration: 0.12, ease: 'power2.out' }, w.start);
+  tl.to(el, { opacity: 0, duration: 0.15 }, w.end - 0.08);
+});
+
+window.__timelines['scene-n1'] = tl;
+</script>
+</body>
+</html>

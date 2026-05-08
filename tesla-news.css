@@ -1,0 +1,350 @@
+/* ================================================
+   鑫观点市场前瞻 - 高级深空主题
+   配色：深炭蓝 + 琥珀金 + 银白星光
+   ================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-deep: #0A0C12;
+  --bg-surface: #12151E;
+  --amber: #C9A962;
+  --amber-bright: #E8C878;
+  --amber-glow: rgba(201, 169, 98, 0.3);
+  --purple-soft: #8B9DC3;
+  --purple-glow: rgba(139, 157, 195, 0.2);
+  --star-white: #E8ECF4;
+  --text-primary: #F5F2EC;
+  --text-muted: #9A9590;
+  --glass-bg: rgba(18, 21, 30, 0.85);
+  --glass-border: rgba(201, 169, 98, 0.15);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text-primary);
+}
+
+/* ===== 高级深空背景 ===== */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+/* 顶部淡紫光晕 */
+.glow-1 {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(ellipse at center, rgba(139, 157, 195, 0.25) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: float1 12s ease-in-out infinite;
+}
+
+/* 右侧琥珀光晕 */
+.glow-2 {
+  position: absolute;
+  top: 10%;
+  right: -15%;
+  width: 60%;
+  height: 50%;
+  background: radial-gradient(ellipse at center, rgba(201, 169, 98, 0.2) 0%, transparent 65%);
+  filter: blur(50px);
+  animation: float2 15s ease-in-out infinite;
+}
+
+/* 底部柔和光 */
+.glow-3 {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 40%;
+  background: radial-gradient(ellipse at bottom, rgba(139, 157, 195, 0.12) 0%, transparent 60%);
+  filter: blur(40px);
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 20px) scale(1.05); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, 30px) scale(1.03); }
+}
+
+/* ===== 高级银白星光 ===== */
+.stars-container {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  background: var(--star-white);
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.2); }
+}
+
+/* 漂浮粒子 */
+.particles {
+  position: absolute;
+  inset: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(135deg, var(--amber) 0%, var(--purple-soft) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: floatUp 10s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(0); }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-150px); }
+}
+
+/* ===== 主容器 ===== */
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+/* ===== 顶部区域 ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  backdrop-filter: blur(20px);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background: #FF4D4F;
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(255, 77, 79, 0); }
+}
+
+.source {
+  font-size: 18px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ===== 主标题 ===== */
+.main-title {
+  margin-bottom: 48px;
+}
+
+.page-title {
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  background: linear-gradient(135deg, var(--amber-bright) 0%, var(--amber) 50%, var(--text-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+/* ===== 内容区 ===== */
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.section-block {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 32px 36px;
+  backdrop-filter: blur(24px);
+}
+
+.section-label {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--amber);
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+.section-content {
+  font-size: 26px;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.section-content strong {
+  color: var(--amber-bright);
+  font-weight: 600;
+}
+
+.up {
+  color: #7DD3A8;
+}
+
+.down {
+  color: #E88B8B;
+}
+
+/* ===== 底部装饰 ===== */
+.page-indicator {
+  position: absolute;
+  bottom: 200px;
+  right: 48px;
+  font-size: 20px;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 140px;
+  left: 48px;
+  right: 48px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--amber) 0%, var(--amber-bright) 100%);
+  border-radius: 2px;
+}
+
+.progress-text {
+  position: absolute;
+  bottom: 160px;
+  left: 48px;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.ghost-num {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-size: 200px;
+  font-weight: 900;
+  color: rgba(201, 169, 98, 0.04);
+  letter-spacing: -10px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ===== 字幕 ===== */
+.subtitle-area {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 48px;
+}
+
+.subtitle-word {
+  font-size: 28px;
+  color: var(--text-primary);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+}
+
+/* ===== 开场页特殊样式 ===== */
+.title-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+#title-date {
+  font-size: 28px;
+  color: var(--purple-soft);
+  letter-spacing: 6px;
+}
+
+#title-main {
+  font-size: 80px;
+  font-weight: 800;
+  letter-spacing: 12px;
+  background: linear-gradient(135deg, var(--amber-bright) 0%, var(--amber) 40%, var(--text-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#title-separator {
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--amber) 50%, transparent 100%);
+  border-radius: 2px;
+}
+
+#title-sub {
+  font-size: 32px;
+  color: var(--text-muted);
+  letter-spacing: 8px;
+}

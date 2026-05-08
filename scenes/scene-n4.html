@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>具身智能下半场</title>
+  <link rel="stylesheet" href="../tesla-news.css" />
+</head>
+<body>
+<div data-composition-id="scene-n4" data-width="1080" data-height="1920">
+
+  <!-- 深空背景 -->
+  <div class="aurora-bg">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+    <div class="stars-container" id="stars"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="slide-container">
+    <!-- 顶部区域 -->
+    <div class="header" id="header">
+      <div class="live-badge"><div class="live-dot"></div><span>财经速递</span></div>
+      <div class="source">来源：权威机构</div>
+    </div>
+
+    <!-- 主标题 -->
+    <div class="main-title" id="main-title">
+      <div class="page-title" id="page-title">具身智能下半场</div>
+    </div>
+
+    <!-- 内容区 -->
+    <div class="content-area" id="content-area">
+
+      <div class="section-block" id="section1">
+        <div class="section-label">📋 事件概要</div>
+        <div class="section-content">管理层对具身智能未来3-5年趋势进行预判，强调商业闭环的重要性，推动从技术验证走向实际应用。</div>
+      </div>
+
+      <div class="section-block" id="section2">
+        <div class="section-label">💡 影响逻辑</div>
+        <div class="section-content">
+          <strong>直接影响：</strong>顶级机构定义趋势，引导市场资金关注方向。<br>
+          <strong>传导路径：</strong>研发重心从"能走"转向"能干活"的实用场景。<br>
+          <strong>深层逻辑：</strong>驱动精密零部件国产化，加速人形机器人量产落地。
+        </div>
+      </div>
+
+      <div class="section-block" id="section3">
+        <div class="section-label">🏢 行业与企业</div>
+        <div class="section-content">
+          <span class="up">🔺 人形机器人：</span>三花智控、拓普集团<br>
+          <span class="up">🔺 灵巧手/传感器：</span>柯力测控、汉威科技<br>
+          <span class="up">🔺 减速器：</span>绿的谐波、中大力德
+        </div>
+      </div>
+    </div>
+
+    <!-- 页码 -->
+    <div class="page-indicator" id="page-indicator">04 / 04</div>
+
+    <!-- 进度条 -->
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-text" id="progress-text">0%</div>
+
+    <!-- 装饰编号 -->
+    <div class="ghost-num" id="ghost-num">04</div>
+
+    <!-- 字幕区 -->
+    <div class="subtitle-area" id="subtitle-area"></div>
+  </div>
+
+</div>
+
+<script src="../js/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+var DURATION = 14.0;
+var tl = gsap.timeline({ paused: true });
+
+// 流畅口播 - 最后一条
+var WORDS = [
+  { text: "权威机构对具身智能", start: 0.5, end: 1.5 },
+  { text: "下半场做出趋势预判", start: 1.5, end: 2.5 },
+  { text: "强调商业化闭环重要性", start: 2.5, end: 3.7 },
+  { text: "从技术验证走向应用", start: 3.7, end: 4.7 },
+  { text: "人形机器人将加速发展", start: 4.7, end: 5.7 },
+  { text: "三花智控、拓普集团", start: 5.7, end: 6.7 },
+  { text: "率先受益", start: 6.7, end: 7.3 },
+  { text: "灵巧手、传感器", start: 7.3, end: 8.1 },
+  { text: "减速器等核心零部件", start: 8.1, end: 9.1 },
+  { text: "绿的谐波、中大力德", start: 9.1, end: 10.3 },
+  { text: "也将迎来发展机遇", start: 10.3, end: 11.3 },
+  { text: "请持续关注鑫观点", start: 11.3, end: 12.3 },
+  { text: "明天再见", start: 12.3, end: 14.0 },
+];
+
+// 生成星星
+var starsContainer = document.getElementById('stars');
+for (var i = 0; i < 60; i++) {
+  var s = document.createElement('div');
+  s.className = 'star';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.animationDelay = Math.random() * 3 + 's';
+  s.style.width = (2 + Math.random() * 2) + 'px';
+  s.style.height = s.style.width;
+  starsContainer.appendChild(s);
+}
+
+// 生成粒子
+var particlesContainer = document.getElementById('particles');
+for (var i = 0; i < 15; i++) {
+  var p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.top = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 8 + 's';
+  particlesContainer.appendChild(p);
+}
+
+// 进度条
+tl.to('#progress-fill', { width: '100%', duration: DURATION, ease: 'none' }, 0);
+tl.to('#progress-text', { textContent: '100%', duration: DURATION, ease: 'none', snap: { textContent: 1 }, onUpdate: function() {
+  document.getElementById('progress-text').style.opacity = 1;
+}}, 0);
+
+// 背景光晕
+tl.fromTo('.glow-1', { opacity: 0, scale: 0.8 }, { opacity: 0.5, scale: 1, duration: 2 }, 0);
+tl.fromTo('.glow-2', { opacity: 0, scale: 0.8 }, { opacity: 0.4, scale: 1, duration: 2 }, 0.3);
+tl.fromTo('.star', { opacity: 0 }, { opacity: 0.8, stagger: { each: 0.03, from: 'random' }, duration: 1 }, 0.2);
+tl.fromTo('.particle', { opacity: 0, y: 80 }, { opacity: 0.7, y: 0, stagger: { each: 0.08, from: 'random' }, duration: 1.5 }, 0.4);
+
+// 顶部区域
+tl.fromTo('#header', { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.3);
+
+// 主标题 - 带模糊滑入
+tl.fromTo('#page-title', { opacity: 0, y: -40, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power3.out' }, 0.5);
+
+// 内容块依次入场
+tl.fromTo('#section1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.9);
+tl.fromTo('#section2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 1.3);
+tl.fromTo('#section3', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 1.7);
+
+// 装饰元素
+tl.fromTo('#ghost-num', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.8);
+tl.fromTo('#page-indicator', { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.5);
+
+// 字幕
+var subtitleContainer = document.getElementById('subtitle-area');
+WORDS.forEach(function(w) {
+  var el = document.createElement('span');
+  el.className = 'subtitle-word';
+  el.textContent = w.text;
+  el.style.opacity = '0';
+  subtitleContainer.appendChild(el);
+  tl.to(el, { opacity: 1, duration: 0.12, ease: 'power2.out' }, w.start);
+  tl.to(el, { opacity: 0, duration: 0.15 }, w.end - 0.08);
+});
+
+window.__timelines['scene-n4'] = tl;
+</script>
+</body>
+</html>

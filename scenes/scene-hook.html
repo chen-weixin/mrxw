@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>鑫观点市场前瞻</title>
+  <link rel="stylesheet" href="../tesla-news.css" />
+</head>
+<body>
+<div data-composition-id="scene-hook" data-width="1080" data-height="1920">
+
+  <!-- 深空背景 -->
+  <div class="aurora-bg">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+    <div class="stars-container" id="stars"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="slide-container" style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
+
+    <!-- 居中标题 -->
+    <div class="title-container" id="title-container">
+      <div id="title-date" style="opacity:0">5月8日</div>
+      <div id="title-main" style="opacity:0">鑫观点市场前瞻</div>
+      <div id="title-separator" style="opacity:0;transform:scaleX(0)"></div>
+      <div id="title-sub" style="opacity:0">每日财经速递</div>
+    </div>
+
+    <div class="page-indicator" id="page-indicator" style="opacity:0">00 / 04</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-text" id="progress-text" style="opacity:0">0%</div>
+    <div class="ghost-num" id="ghost-num" style="opacity:0">I</div>
+    <div class="subtitle-area" id="subtitle-area"></div>
+  </div>
+
+</div>
+
+<script src="../js/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+var DURATION = 6.5;
+var tl = gsap.timeline({ paused: true });
+
+// 字幕 - 流畅开场白
+var WORDS = [
+  { text: "欢迎来到", start: 0.3, end: 0.8 },
+  { text: "鑫观点市场前瞻", start: 0.8, end: 1.8 },
+  { text: "每天五分钟", start: 1.8, end: 2.4 },
+  { text: "纵览市场动态", start: 2.4, end: 3.2 },
+  { text: "把握投资机会", start: 3.2, end: 4.0 },
+  { text: "让我们开始吧", start: 4.0, end: 5.0 },
+];
+
+// 生成星星
+var starsContainer = document.getElementById('stars');
+for (var i = 0; i < 80; i++) {
+  var s = document.createElement('div');
+  s.className = 'star';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top = Math.random() * 100 + '%';
+  s.style.animationDelay = Math.random() * 3 + 's';
+  s.style.width = (2 + Math.random() * 3) + 'px';
+  s.style.height = s.style.width;
+  starsContainer.appendChild(s);
+}
+
+// 生成漂浮粒子
+var particlesContainer = document.getElementById('particles');
+for (var i = 0; i < 20; i++) {
+  var p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.top = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 8 + 's';
+  particlesContainer.appendChild(p);
+}
+
+// 光晕动画
+tl.fromTo('.glow-1', { opacity: 0, x: -50 }, { opacity: 0.6, x: 0, duration: 2 }, 0);
+tl.fromTo('.glow-2', { opacity: 0, x: 50 }, { opacity: 0.5, x: 0, duration: 2 }, 0.5);
+tl.fromTo('.glow-3', { opacity: 0 }, { opacity: 0.4, duration: 1.5 }, 1);
+tl.fromTo('.star', { opacity: 0 }, { opacity: 1, stagger: { each: 0.05, from: 'random' }, duration: 1 }, 0.3);
+tl.fromTo('.particle', { opacity: 0, y: 100 }, { opacity: 0.8, y: 0, stagger: { each: 0.1, from: 'random' }, duration: 1.5 }, 0.5);
+
+// 进度条
+tl.to('#progress-fill', { width: '100%', duration: DURATION, ease: 'none' }, 0);
+tl.to('#progress-text', { textContent: '100%', duration: DURATION, ease: 'none', snap: { textContent: 1 }, onUpdate: function() {
+  document.getElementById('progress-text').style.opacity = 1;
+}}, 0);
+
+// 标题入场
+tl.to('#title-date', { opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.4);
+tl.to('#title-main', { opacity: 1, duration: 1, ease: 'power3.out' }, 0.7);
+tl.to('#title-separator', { opacity: 1, scaleX: 1, duration: 0.6, ease: 'power3.out' }, 1.3);
+tl.to('#title-sub', { opacity: 1, duration: 0.8, ease: 'power3.out' }, 1.6);
+tl.to('#ghost-num', { opacity: 1, duration: 0.5 }, 0.8);
+tl.to('#page-indicator', { opacity: 1, duration: 0.5 }, 0.5);
+
+// 字幕
+var subtitleContainer = document.getElementById('subtitle-area');
+WORDS.forEach(function(w) {
+  var el = document.createElement('span');
+  el.className = 'subtitle-word';
+  el.textContent = w.text;
+  el.style.opacity = '0';
+  subtitleContainer.appendChild(el);
+  tl.to(el, { opacity: 1, duration: 0.15, ease: 'power2.out' }, w.start);
+  tl.to(el, { opacity: 0, duration: 0.2 }, w.end - 0.1);
+});
+
+window.__timelines['scene-hook'] = tl;
+</script>
+</body>
+</html>
