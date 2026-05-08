@@ -9,3 +9,11 @@
 
 # 临时文件
 *.tmp
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# 数据库文件（本地使用，不上传）
+data/*.db
